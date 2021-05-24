@@ -1,0 +1,65 @@
+<Start> TK_PROG PARAN_OPEN PARAN_CLOSE CURL_OPEN <Declarative_statements> <Assignment_Statements> CURL_CLOSE
+<Declarative_statements> <Declare> <Declarative_statements>
+<Declarative_statements> <Declare>
+<Declare> <Primitive_Declaration>
+<Declare> <Array_Declaration>
+<Primitive_Declaration> <Declare_Statement> TK_COL <TYPE> TK_SEMICOL
+<Array_Declaration> <Rectangular_Array>
+<Array_Declaration> <Jagged_Array>
+<Rectangular_Array> <Declare_Statement> TK_COL TK_ARR <Rectangular_Array_Range> TK_OF TK_INT TK_SEMICOL
+<Rectangular_Array_Range> SQ_OPEN <Low> TK_PERIOD TK_PERIOD <High> SQ_CLOSE <Rectangular_Array_Range> 
+<Rectangular_Array_Range> SQ_OPEN <Low> TK_PERIOD TK_PERIOD <High> SQ_CLOSE 
+<Jagged_Array> <Declare_Statement> TK_COL TK_JAG TK_ARR SQ_OPEN NUM_TK TK_PERIOD TK_PERIOD NUM_TK SQ_CLOSE SQ_OPEN SQ_CLOSE TK_OF TK_INT TK_SEMICOL <ROW_LIST2d>
+<ROW_LIST2d> <ROW2d> <ROW_LIST2d>
+<ROW_LIST2d> <ROW2d>
+<ROW2d> TK_R1 SQ_OPEN NUM_TK SQ_CLOSE TK_COL TK_SIZE NUM_TK TK_COL TK_VALS CURL_OPEN <VALUE_LIST2d> CURL_CLOSE
+<VALUE_LIST2d> <NUM_LIST> TK_SEMICOL <VALUE_LIST2d>
+<VALUE_LIST2d> <NUM_LIST>
+<Jagged_Array> <Declare_Statement> TK_COL TK_JAG TK_ARR SQ_OPEN NUM_TK TK_PERIOD TK_PERIOD NUM_TK SQ_CLOSE SQ_OPEN SQ_CLOSE SQ_OPEN SQ_CLOSE TK_OF TK_INT TK_SEMICOL <ROW_LIST3d>
+<ROW_LIST3d> <ROW3d> <ROW_LIST3d>
+<ROW_LIST3d> <ROW3d>
+<ROW3d> TK_R1 SQ_OPEN NUM_TK SQ_CLOSE TK_COL TK_SIZE NUM_TK TK_COL TK_VALS CURL_OPEN <VALUE_LIST3d> CURL_CLOSE
+<VALUE_LIST3d> <NUM_LIST> TK_SEMICOL <VALUE_LIST3d> 
+<VALUE_LIST3d> <NUM_LIST>
+<NUM_LIST> NUM_TK <NUM_LIST>
+<NUM_LIST> NUM_TK
+<NUM_LIST> EMPTY_TK
+<Declare_Statement> TK_DECLARE <Variable_Name>
+<Declare_Statement> TK_DECLARE TK_LIST TK_OF TK_VARS <Variable_List>
+<Low> <Variable_Name>
+<Low> NUM_TK
+<High> <Variable_Name>
+<High> NUM_TK
+<Variable_List> <Variable_Name> <Variable_List>
+<Variable_List> <Variable_Name>
+<Variable_Name> ID_TK
+<TYPE> TK_INT
+<TYPE> TK_REAL
+<TYPE> TK_BOOL
+<Assignment_Statements> <LHS> TK_EQUAL <RHS> <Assignment_Statements> 
+<Assignment_Statements> <LHS> TK_EQUAL <RHS>
+<LHS> <Variable>
+<Variable> <Array_element>
+<Variable> <Variable_Name>
+<RHS> <Arithmetic_expression> TK_SEMICOL
+<RHS> <Boolean_expression> TK_SEMICOL
+<Array_element> <Variable_Name> SQ_OPEN <index_list> SQ_CLOSE 
+<index_list> <index> <index_list>
+<index_list> <index>
+<index> <Variable_Name>
+<index> NUM_TK
+<Arithmetic_expression> <term> <operator1> <Arithmetic_expression>
+<Arithmetic_expression> <term>
+<term> <factor> <operator2> <term>
+<term> <factor>
+<factor> <Variable>
+<factor> NUM_TK
+<operator1> OP_ADD
+<operator1> OP_SUB
+<operator2> OP_MUL
+<operator2> OP_DIV
+<Boolean_expression> <Bool_Term> OP_LOG_OR <Boolean_expression>
+<Boolean_expression> <Bool_Term>
+<Bool_Term> <Bool_factor> OP_LOG_AND  <Bool_Term> 
+<Bool_Term> <Bool_factor>
+<Bool_factor> <Variable_Name>
